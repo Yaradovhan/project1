@@ -5,8 +5,9 @@
  * Date: 03.04.18
  * Time: 16:17
  */
+include '../model/User.php';
 
-class User implements IRepo
+class UserRepository
 {
     public function save()
     {
@@ -16,10 +17,14 @@ class User implements IRepo
     {
 
     }
-    public function getAllById($id)
+    public function getById($id)
     {
-
+        $arrayUser = ['id' => 1, 'name' => 'admin', 'email' => 'email@list.ru'];
+        $user = new User();
+        $user->setUser($arrayUser);
+        return $user;
     }
+
     public function deleteById($id)
     {
 

@@ -1,6 +1,6 @@
 <?php
 
-class Task
+class Task extends \Entity
 {
     private $id;
     private $text;

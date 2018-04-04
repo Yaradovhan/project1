@@ -6,9 +6,9 @@
  * Time: 16:18
  */
 
-class Admin implements IRepo
+class Admin
 {
-    public function save()
+    public function save(Entity $t, Entity $t)
     {
 
     }

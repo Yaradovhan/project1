@@ -1,9 +1,13 @@
 <?php
 
-class Users
+class User extends \Entity
 {
     private $name;
     private $email;
+    /**
+     * @var int
+     */
+    private $id;
 
     public function __construct()
     {
@@ -20,6 +24,11 @@ class Users
         $this->name = $name;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getEmail()
     {
         return $this->email;
@@ -34,6 +43,7 @@ class Users
     {
         $this->name = $data['name'];
         $this->email = $data['email'];
+        $this->id = $data['id'];
     }
 
     public function getUser()

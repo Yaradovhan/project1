@@ -8,9 +8,16 @@
 
 interface IRepo
 {
-    public function save();
+    public function save(Entity $t, Entity $t);
+
     public function getAll();
     public function getAllById($id);
+
+    /**
+     * @param $id
+     *
+     * @return bool
+     */
     public function deleteById($id);
     public function updateById($id);
 
