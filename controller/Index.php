@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: yara
@@ -11,11 +12,18 @@ class Index extends AController
     {
 //        echo __CLASS__;
     }
+
     public function get_body()
     {
-        $db = new Model(HOST,USER,PASS,DB);
+        $db = new Model(HOST, USER, PASS, DB);
         $todo = $db->get_all_db();
-        return $this->render('Index',array('title'=>'Index Page',
-            'todo'=>$todo));
+
+        return $this->render(
+            'Index',
+            [
+                'title' => 'Index Page',
+                'todo' => $todo
+            ]
+        );
     }
 }

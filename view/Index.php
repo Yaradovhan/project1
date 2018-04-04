@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $title; ?></title>
+    <title><?php echo $title; ?></title>
 </head>
 <body>
 <h2>Header</h2>
@@ -23,17 +23,18 @@
     }
 
 </style>
-<form action="/<?= $item['task']['id'] ?>" method="get">
-    <? foreach ($todo as $item) : ?>
+<!--<form action="/--><? //= $item['task']['id'] ?><!--" method="get">-->
+<form action="/a" method="get">
+    <?php foreach ($todo as $item) : ?>
         <div class="message">
-            <p>Автор: <?= $item['user']['name'] ?> | Дата: <?= $item['task']['date'] ?></p>
-            <p>Email: <?= $item['user']['email'] ?></p>
+            <p>Автор: <?php echo $item['user']['name'] ?> | Дата: <?= $item['task']['date'] ?></p>
+            <p>Email: <?php echo $item['user']['email'] ?></p>
             <div>Task: <?= nl2br(htmlspecialchars($item['task']['text'])) ?></div>
-            <img src="<?= IMAGE . $item['task']['img'] ?>" alt="<?= $item['task']['img'] ?>">
-            <p><a href="index.php?option=delete/<?= $item['task']['id'] ?>">Delete this task</a></p>
-            <p><a href="index.php?option=done/<?= $item['task']['id'] ?>">Done this task</a></p>
+            <img src="<?php echo IMAGE . $item['task']['img'] ?>" alt="<?php echo $item['task']['img'] ?>">
+            <p><a href="index.php?option=delete/<?php echo $item['task']['id'] ?>">Delete this task</a></p>
+            <p><a href="index.php?option=done/<?php echo $item['task']['id'] ?>">Done this task</a></p>
         </div>
-    <? endforeach; ?>
+    <?php endforeach; ?>
 </form>
 <hr>
 <h3>Footer</h3>
