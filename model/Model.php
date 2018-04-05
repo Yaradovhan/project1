@@ -6,8 +6,8 @@
  * Time: 10:25
  */
 
-require_once('Task.php');
-require_once('User.php');
+require_once('./Task.php');
+require_once('./User.php');
 
 class Model
 {

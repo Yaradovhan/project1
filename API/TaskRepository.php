@@ -1,5 +1,9 @@
 <?php
 
+require_once '../model/User.php';
+require_once '../model/Task.php';
+
+
 class TaskRepository
 {
     public $data = [];
@@ -55,6 +59,7 @@ class TaskRepository
         $data = [];
         for ($i = 0; $i < mysqli_num_rows($res); $i++) {
             $all = mysqli_fetch_array($res, MYSQLI_ASSOC);
+            var_dump($all);
             $task = new Task();
             $task->setTask(['id' => $all['id'], 'text' => $all['text'], 'img' => $all['img'], 'date' => $all['date']]);
             $user = new User();
@@ -86,13 +91,16 @@ class TaskRepository
     }
 
     /**
-     * @param $id
+     * @param $task
      *
      * @return bool|mysqli_result
      */
-    public function updateById($id)
+    public function updateById($task)
     {
-        $res = mysqli_query($this->connection->getConnection(), "UPDATE () * WHERE id = id " );
+
+        var_dump($task);
+//        $res = mysqli_query($this->connection->getConnection(), "UPDATE tasks name = {$task->text} WHERE id = {$task->id} " );
+        $res = mysqli_query($this->connection->getConnection(), "UPDATE tasks SET text='{$task->getText()}' WHERE id = '{$task->getId()}'" );
         return $res;
     }
 

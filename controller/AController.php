@@ -14,7 +14,7 @@ abstract class AController
     {
         extract($params);
         ob_start();
-        include('view/' . $file . '.php');
+        include('../view/' . $file . '.php');
         return ob_get_clean();
     }
 }

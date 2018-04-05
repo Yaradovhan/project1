@@ -1,4 +1,5 @@
 <?php
+require_once 'Entity.php';
 
 class User extends Entity
 {

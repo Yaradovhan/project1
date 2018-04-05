@@ -6,6 +6,8 @@
  * Time: 16:17
  */
 //include '../model/User.phpp';
+require_once '../model/User.php';
+require_once '../model/Task.php';
 
 class UserRepository
 {

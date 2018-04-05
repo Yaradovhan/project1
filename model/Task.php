@@ -45,10 +45,10 @@ class Task extends Entity
 
     public function setTask($data)
     {
-        $this->id = (!empty($data['id'])) ? $data['id'] : 0;
-        $this->text = $data['text'];
-        $this->img = $data['img'];
-        $this->date = $data['date'];
+        $this->id = (isset($data['id'])) ? $data['id'] : null;
+        $this->text = (isset($data['text'])) ? $data['text'] : '';
+        $this->img = (isset($data['img'])) ? $data['img'] : '';
+        $this->date = (isset($data['date'])) ? $data['date'] : '';
     }
 
     public function getTask()
