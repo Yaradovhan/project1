@@ -1,21 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yara
- * Date: 03.04.18
- * Time: 16:17
- */
 
-/**
- * Class TaskRepository
- */
 class TaskRepository
 {
     public $data = [];
     /**
      * @var ConnectionMySql
      */
-    protected $connection;
+    public $connection;
 
     /**
      * TaskRepository constructor.
@@ -25,16 +16,21 @@ class TaskRepository
         $this->connection = new ConnectionMySql();
     }
 
-    public function save(\Task $task, \User $user = null)
+    /**
+     * @param Task $task
+     * @param User|null $user
+     * @return bool|mysqli_result
+     */
+    public function save($task, $user = null)
     {
         //$task->getDsc();
         $resultSaveTask = mysqli_query($this->connection->getConnection(), "INSERT INTO `tasks`(`text`, `img`) VALUES ('" . $task->getText() . "','" . $task->getImg() . "')");
 //        $res .= mysqli_query($this->connection->getConnection(),"INSERT INTO `users`(`name`, `email`) VALUES ('" . $user->getName() . "','" . $user->getEmail() . "')");
 //        $res .= mysqli_query($this->connection->getConnection(),"INSERT INTO `users_tasks` ( user_id, task_id ) VALUES ((SELECT max(id) FROM users),(SELECT max(id) FROM tasks))");
 
-        if($user) {
-           $resultBandleTaksToUser = mysqli_query($this->connection->getConnection(),"INSERT INTO `users_tasks` ( user_id, task_id ) VALUES ('" . $user->getId() . "', " . $task->getId() . ") ");
-       }
+//        if($user) {
+//           $resultBandleTaksToUser = mysqli_query($this->connection->getConnection(),"INSERT INTO `users_tasks` ( user_id, task_id ) VALUES ('" . $user->getId() . "', " . $task->getId() . ") ");
+//       }
         return $resultSaveTask;
     }
 
@@ -61,11 +57,12 @@ class TaskRepository
             $all = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $task = new Task();
             $task->setTask(['id' => $all['id'], 'text' => $all['text'], 'img' => $all['img'], 'date' => $all['date']]);
-            $user = new Users();
+            $user = new User();
             $user->setUser(['email' => $all['email'], 'name' => $all['name']]);
             $data[$i]['task'] = $task->getTask();
             $data[$i]['user'] = $user->getUser();
         }
+
         return $data;
     }
 
@@ -115,7 +112,7 @@ class TaskRepository
             $all = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $task = new Task();
             $task->setTask(['id' => $all['id'], 'text' => $all['text'], 'img' => $all['img'], 'date' => $all['date']]);
-            $user = new Users();
+            $user = new User();
             $user->setUser(['email' => $all['email'], 'name' => $all['name']]);
             $this->data[$i]['task'] = $task->getTask();
             $this->data[$i]['user'] = $user->getUser();
@@ -139,7 +136,7 @@ class TaskRepository
             $all = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $task = new Task();
             $task->setTask(['id' => $all['id'], 'text' => $all['text'], 'img' => $all['img'], 'date' => $all['date']]);
-            $user = new Users();
+            $user = new User();
             $user->setUser(['email' => $all['email'], 'name' => $all['name']]);
             $this->data[$i]['task'] = $task->getTask();
             $this->data[$i]['user'] = $user->getUser();

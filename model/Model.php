@@ -7,7 +7,7 @@
  */
 
 require_once('Task.php');
-require_once('Users.php');
+require_once('User.php');
 
 class Model
 {
@@ -45,11 +45,11 @@ class Model
 //        echo "<pre>";
 //        print_r($task->getTask());
 //        die();
-            $user = new Users();
+            $user = new User();
             $user->setUser( ['email' => $all['email'], 'name' => $all['name']]);
 
             $this->data[$i]['task'] = $task->getTask();
-            $this->data[$i]['user'] = $user->getUser();
+            $this->data[$i]['User'] = $user->getUser();
         }
 //        echo "<pre>";
 //        print_r($this->data);
@@ -58,8 +58,7 @@ class Model
     }
     public function add_task()
     {
-        $res = mysqli_query($this->db,"INSERT * ");
-        return $res;
+
     }
 
     public function deleteTask($id)

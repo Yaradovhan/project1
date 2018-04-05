@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: yara
- * Date: 03.04.18
- * Time: 16:14
- */
 
-interface IRepo
+interface Repo
 {
-    public function save(Entity $t, Entity $t);
+    public function save($t, $u);
 
     public function getAll();
     public function getAllById($id);

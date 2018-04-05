@@ -2,8 +2,8 @@
 
 define("HOST", 'localhost');
 define("USER", 'root');
-define("PASS", '799pgnJY2TE40tma');
-define("DB", 'project1');
+define("PASS", '');
+define("DB", 'testdb');
 
 define("IMAGE", "view/assets/img/");
 
