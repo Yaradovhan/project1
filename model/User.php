@@ -47,9 +47,9 @@ class User extends Entity
 
     public function setUser($data)
     {
-        $this->name = $data['name'];
-        $this->email = $data['email'];
-        $this->id = $data['id'];
+        $this->name = isset($data['name']) ? $data['name'] : null;
+        $this->email = isset($data['email']) ? $data['email'] : null;
+        $this->id = isset($data['id']) ? $data['id'] : null;
     }
 
     public function getUser()

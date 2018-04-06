@@ -8,7 +8,16 @@ class Index extends AController
     {
 
         $taskRepository = new TaskRepository();
-        $allTasks = $taskRepository->getAll($start, $limit);
+        $sort = null;
+        if (isset($_GET['sort'])) {
+            if ($_GET['sort'] == 'name') {
+                $sort = "name";
+            } elseif ($_GET['sort'] == 'email') {
+                $sort = "email";
+            }
+        }
+
+        $allTasks = $taskRepository->getAll($start, $limit, $sort);
 
         return $this->render(
             'Index',

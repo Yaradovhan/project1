@@ -12,9 +12,18 @@ class AdminEdit extends AdminAController
      */
     public function execute($params = null)
     {
-        $repoTask = new TaskRepository();
         $task = new Task();
         $task->setTask($params);
-        return $repoTask->updateById($task);
+        return $this->taskRepository->updateById($task);
+    }
+
+    /**
+     * AdminEdit constructor.
+     *
+     * @param TaskRepository $taskRepository
+     */
+    public function __construct(TaskRepository $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
     }
 }

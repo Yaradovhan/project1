@@ -14,9 +14,6 @@ function __autoload($file)
     }
 }
 
-$init = new AdminEdit();
+$init = new AdminEdit(new TaskRepository());
 
 $res = $init->execute($_POST['task']);
-
-?>
-<a href="javascript:history.go(-1)">Congrats, go back to dashboard</a>
