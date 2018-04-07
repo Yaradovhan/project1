@@ -2,8 +2,8 @@
 
 include 'config.php';
 
-include('./API/TaskRepository.php');
-include('./API/UserRepository.php');
+include('./model/TaskModel/TaskModel.php');
+include('./model/UserModel/UserModel.php');
 
 function __autoload($file)
 {
@@ -17,13 +17,8 @@ function __autoload($file)
 if(isset($_GET['add']))
 {
     $init = new Add();
-}else
-{
+} else {
     $init = new Index();
 }
 
-$limit = 3;
-if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
-$start = ($page-1) * $limit;
-
-echo $init->get_body($start, $limit);
+echo $init->execute();

@@ -1,17 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Index page</title>
+
+    ﻿<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+
 </head>
 <body>
 <h2>Header</h2>
 <hr>
 <a href="<?= getBaseUrl() . '?add'?>">Add new task</a> |
-<a href="<?= getBaseUrl() . 'admin' ?>">Go to admin</a> |
-<th><a href="index.php?sort=name">Sort by name:</a></th>
+<a href="<?= getBaseUrl() . '/admin'?>">Go to admin</a> |
+<th><a href="?sort=name">Sort by name:</a></th>
 |
-<th><a href="index.php?sort=email">Sort by email:</a></th>
+<th><a href="?sort=email">Sort by email:</a></th>
 |
 <th><a href="index.php">Default sort</a></th>
 <style>
@@ -41,6 +45,7 @@
                  alt="<?php echo $item['task']['img'] ?>">
         </div>
     <?php endforeach; ?>
+</form>
 <?php
 $limit = 3;
 $conn = new ConnectionMySql();
@@ -51,7 +56,7 @@ $total_records = $row[0];
 $total_pages = ceil($total_records / $limit);
 $pagLink = "<div class='pagination'>";
 for ($i=1; $i<=$total_pages; $i++) {
-    $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a> ------ ";
+    $pagLink .= "<a href='?page=" . $i . $sort. "'>".$i."</a> ------ ";
 };
 echo $pagLink . "</div>";
 //?>

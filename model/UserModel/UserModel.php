@@ -3,7 +3,7 @@
 //require_once '../model/User.php';
 //require_once '../model/Task.php';
 
-class UserRepository
+class UserModel
 {
 
     public $data = [];
@@ -13,7 +13,7 @@ class UserRepository
     public $connection;
 
     /**
-     * TaskRepository constructor.
+     * TaskModel constructor.
      */
     public function __construct()
     {
@@ -51,8 +51,4 @@ class UserRepository
 
     }
 
-    public function getAllById($id)
-    {
-
-    }
 }

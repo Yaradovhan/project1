@@ -1,7 +1,9 @@
-<?php
+﻿﻿<?php
 include '../config.php';
-include('../API/TaskRepository.php');
-include('../API/UserRepository.php');
+
+include('../model/TaskModel/TaskModel.php');
+include('../model/UserModel/UserModel.php');
+
 function __autoload($file)
 {
     if (file_exists('../controller/' . $file . '.php')) {
@@ -15,7 +17,18 @@ function __autoload($file)
 
 <?php
 //session_destroy();
-    $init = new AdminIndex();
-    echo $init->execute();
-//    session_destroy();
-//}
+
+
+$limit = ConfigApp::MysqlDescSort;
+
+if (isset($_GET["page"])) {
+    $page = $_GET["page"];
+} else {
+    $page = 1;
+}
+
+$start = ($page - 1) * $limit;
+$init = new AdminIndex();
+
+echo $init->execute($start, $limit);
+

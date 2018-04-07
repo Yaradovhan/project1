@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/admin/edit.php" />
+    <file url="file://$PROJECT_DIR$/admin/index.php" />
+    <file url="file://$PROJECT_DIR$/API/Repo.php" />
+    <file url="file://$PROJECT_DIR$/controller/AController.php" />
+    <file url="file://$PROJECT_DIR$/controller/Add.php" />
+    <file url="file://$PROJECT_DIR$/controller/AdminAController.php" />
+    <file url="file://$PROJECT_DIR$/controller/AdminEdit.php" />
+    <file url="file://$PROJECT_DIR$/controller/AdminIndex.php" />
+    <file url="file://$PROJECT_DIR$/controller/Index.php" />
+    <file url="file://$PROJECT_DIR$/model/AddTask.php" />
+    <file url="file://$PROJECT_DIR$/model/ConnectionMySql.php" />
+    <file url="file://$PROJECT_DIR$/model/Entity.php" />
+    <file url="file://$PROJECT_DIR$/model/Model.php" />
+    <file url="file://$PROJECT_DIR$/model/Task.php" />
+    <file url="file://$PROJECT_DIR$/model/TaskModel/TaskModel.php" />
+    <file url="file://$PROJECT_DIR$/model/User.php" />
+    <file url="file://$PROJECT_DIR$/model/UserModel/UserModel.php" />
+    <file url="file://$PROJECT_DIR$/view/Add.php" />
+    <file url="file://$PROJECT_DIR$/view/AdminIndex.php" />
+    <file url="file://$PROJECT_DIR$/view/Index.php" />
+    <file url="file://$PROJECT_DIR$/view/LoginAdmin.php" />
+    <file url="file://$PROJECT_DIR$/view/Message.php" />
+  </component>
+</project>

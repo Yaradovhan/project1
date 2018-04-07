@@ -4,6 +4,16 @@ require_once "AdminAController.php";
 class AdminEdit extends AdminAController
 {
     /**
+     * AdminEdit constructor.
+     *
+     * @param TaskModel $taskRepository
+     */
+    public function __construct(TaskModel $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
+    }
+
+    /**
      * task[id]
      * task[text]
      *
@@ -17,13 +27,4 @@ class AdminEdit extends AdminAController
         return $this->taskRepository->updateById($task);
     }
 
-    /**
-     * AdminEdit constructor.
-     *
-     * @param TaskRepository $taskRepository
-     */
-    public function __construct(TaskRepository $taskRepository)
-    {
-        $this->taskRepository = $taskRepository;
-    }
 }
