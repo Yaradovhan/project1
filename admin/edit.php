@@ -2,8 +2,8 @@
 
 include '../config.php';
 
-include('../API/TaskRepository.php');
-include('../API/UserRepository.php');
+include('../model/TaskModel/TaskModel.php');
+include('../model/UserModel/UserModel.php');
 
 function __autoload($file)
 {
@@ -14,9 +14,8 @@ function __autoload($file)
     }
 }
 
-$init = new AdminEdit();
+$init = new AdminEdit(new TaskModel());
 
 $res = $init->execute($_POST['task']);
-
 ?>
 <a href="javascript:history.go(-1)">Congrats, go back to dashboard</a>

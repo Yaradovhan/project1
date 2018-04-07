@@ -2,8 +2,8 @@
 
 include 'config.php';
 
-include('./API/TaskRepository.php');
-include('./API/UserRepository.php');
+include('./model/TaskModel/TaskModel.php');
+include('./model/UserModel/UserModel.php');
 
 function __autoload($file)
 {

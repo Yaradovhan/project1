@@ -1,18 +1,15 @@
 <?php
-
 //require_once ('../model/User.php');
 //require_once '../model/Task.php';
-
-class TaskRepository
+class TaskModel
 {
-    public $data = [];
     /**
      * @var ConnectionMySql
      */
     public $connection;
 
     /**
-     * TaskRepository constructor.
+     * TaskModel constructor.
      */
     public function __construct()
     {
@@ -22,6 +19,7 @@ class TaskRepository
     /**
      * @param Task $task
      * @param User|null $user
+     *
      * @return bool|mysqli_result
      */
     public function save($task, $user = null)
@@ -31,24 +29,30 @@ class TaskRepository
         return $resultSaveTask;
     }
 
-    public function getAll($start, $limit)
+    public function getAll($start = null, $limit = ConfigApp::MysqlLimit, $sort = null , $i = 'id')
     {
-        $query = "SELECT t.id, t.text, t.img, t.date, u.name, u.email 
-                                                FROM tasks t 
-                                                LEFT JOIN users_tasks ut 
-                                                ON t.id = ut.task_id 
-                                                LEFT JOIN users u 
-                                                ON u.id = ut.user_id
-                                                LIMIT $start, $limit";
-//        WHERE main
-
-        if ($_GET['sort'] == 'name') {
-            $query .= " ORDER BY u.name DESC";
-        } elseif ($_GET['sort'] == 'email') {
-            $query .= " ORDER BY u.email DESC";
+        if ($sort) {
+            $sortTable = 'reference_table';
+            $i = $_GET['sort'];
+        } else {
+            $sortTable = 'main_table';
         }
-        
+        $query = "SELECT main_table.id, main_table.text, main_table.img, main_table.date, reference_table.name, reference_table.email 
+                                                FROM tasks main_table 
+                                                LEFT JOIN users_tasks ut 
+                                                ON main_table.id = ut.task_id 
+                                                LEFT JOIN users reference_table 
+                                                ON reference_table.id = ut.user_id
+                                                
+                                                ORDER BY $sortTable.$i DESC 
+                                                
+                                                LIMIT $start, $limit";
+
+        var_dump($query);
+        echo "<br>";
+
         $res = mysqli_query($this->connection->getConnection(), $query);
+
         if (!$res) {
             return false;
         }
@@ -56,9 +60,17 @@ class TaskRepository
         for ($i = 0; $i < mysqli_num_rows($res); $i++) {
             $all = mysqli_fetch_array($res, MYSQLI_ASSOC);
             $task = new Task();
-            $task->setTask(['id' => $all['id'], 'text' => $all['text'], 'img' => $all['img'], 'date' => $all['date']]);
+            $task->setTask([
+                'id' => $all['id'],
+                'text' => $all['text'],
+                'img' => $all['img'],
+                'date' => $all['date']
+            ]);
             $user = new User();
-            $user->setUser(['email' => $all['email'], 'name' => $all['name']]);
+            $user->setUser([
+                'email' => $all['email'],
+                'name' => $all['name']
+            ]);
             $data[$i]['task'] = $task->getTask();
             $data[$i]['user'] = $user->getUser();
         }
@@ -82,6 +94,7 @@ class TaskRepository
                                         FROM tasks t
                                         LEFT JOIN users_tasks ut ON t.id = ut.task_id
                                         WHERE t.id = '$id'");
+
         return $res;
     }
 
@@ -93,6 +106,7 @@ class TaskRepository
     public function updateById($task)
     {
         $res = mysqli_query($this->connection->getConnection(), "UPDATE tasks SET text='{$task->getText()}' WHERE id = '{$task->getId()}'");
+
         return $res;
     }
 
@@ -100,5 +114,4 @@ class TaskRepository
     {
 
     }
-
 }

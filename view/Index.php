@@ -7,11 +7,11 @@
 <body>
 <h2>Header</h2>
 <hr>
-<a href="<?= ADD_TASK ?>">Add new task</a> |
-<a href="<?= ADMIN ?>">Go to admin</a> |
-<th><a href="index.php?sort=name">Sort by name:</a></th>
+<a href="<?= getBaseUrl() . '?add'?>">Add new task</a> |
+<a href="<?= getBaseUrl() . 'admin' ?>">Go to admin</a> |
+<th><a href="?sort=name">Sort by name:</a></th>
 |
-<th><a href="index.php?sort=email">Sort by email:</a></th>
+<th><a href="?sort=email">Sort by email:</a></th>
 |
 <th><a href="index.php">Default sort</a></th>
 <style>
@@ -41,6 +41,7 @@
                  alt="<?php echo $item['task']['img'] ?>">
         </div>
     <?php endforeach; ?>
+</form>
 <?php
 $limit = 3;
 $conn = new ConnectionMySql();
@@ -51,7 +52,7 @@ $total_records = $row[0];
 $total_pages = ceil($total_records / $limit);
 $pagLink = "<div class='pagination'>";
 for ($i=1; $i<=$total_pages; $i++) {
-    $pagLink .= "<a href='index.php?page=".$i."'>".$i."</a>";
+    $pagLink .= "<a href='?page=".$i."'>".$i."</a> ------ ";
 };
 echo $pagLink . "</div>";
 //?>

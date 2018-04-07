@@ -1,8 +1,8 @@
 <?php
 
 require_once '../config.php';
-require_once '../API/UserRepository.php';
-require_once '../API/TaskRepository.php';
+require_once '../model/UserModel/UserModel.php';
+require_once '../model/TaskModel/TaskModel.php';
 require_once 'User.php';
 require_once 'Task.php';
 require_once 'ConnectionMySql.php';
@@ -35,8 +35,8 @@ if(isset($_FILES['img'])){
 
 if (isset($_POST['user']) && isset($_POST['task'])) {
 //    $_POST['task']['img'] = IMAGE;
-    $userRepo = new UserRepository();
-    $taskRepo = new TaskRepository();
+    $userRepo = new UserModel();
+    $taskRepo = new TaskModel();
     $arrayUser = ['name' => $_POST['user']['name'], 'email' => $_POST['user']['email']];
     $arrayTask = ['text' => $_POST['task']['text'], 'img' => $file_name];
     $user = new User();

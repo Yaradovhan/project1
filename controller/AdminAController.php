@@ -7,7 +7,7 @@ abstract class AdminAController
      *
      * @return mixed
      */
-    abstract function execute($params = null);
+    abstract function execute();
 
     protected function render($file, $params)
     {
