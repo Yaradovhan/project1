@@ -6,11 +6,6 @@ class User
     private $email;
     private $id;
 
-    public function __construct()
-    {
-
-    }
-
     public function getName()
     {
         return $this->name;
@@ -48,7 +43,7 @@ class User
         $this->id = isset($data['id']) ? $data['id'] : null;
     }
 
-    public function getUser()
+    public function getArrayUser()
     {
         return ['name' => $this->name, 'email' => $this->email];
     }

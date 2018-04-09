@@ -5,7 +5,9 @@ class Add extends AController
 
     public function execute()
     {
-
-        return $this->render('Add', array('title' => 'Add task'));
+        try {
+            return $this->render('Add', ['title' => 'Add task']);
+        } catch (Exception $e) {
+        }
     }
 }

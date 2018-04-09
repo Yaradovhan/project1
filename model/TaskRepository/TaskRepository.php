@@ -75,8 +75,8 @@ class TaskRepository implements TaskRepo
                 'email' => $all['email'],
                 'name' => $all['name']
             ]);
-            $data[$i]['task'] = $task->getTask();
-            $data[$i]['user'] = $user->getUser();
+            $data[$i]['task'] = $task->getTaskArray();
+            $data[$i]['user'] = $user->getArrayUser();
         }
 
         return $data;

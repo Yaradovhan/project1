@@ -6,6 +6,7 @@ class Index extends AController
 {
     /**
      * @return string
+     * @throws Exception
      */
     public function execute()
     {

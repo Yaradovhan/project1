@@ -7,13 +7,6 @@ class Task
     private $img;
     private $date;
 
-    //private $data = [];
-
-    public function __construct()
-    {
-
-    }
-
     public function getId()
     {
         return $this->id;
@@ -52,7 +45,7 @@ class Task
         $this->date = (isset($data['date'])) ? $data['date'] : '';
     }
 
-    public function getTask()
+    public function getTaskArray()
     {
         return ['id' => $this->id, 'text' => $this->text, 'img' => $this->img, 'date' => $this->date];
     }

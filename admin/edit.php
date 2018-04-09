@@ -2,9 +2,6 @@
 
 include '../config.php';
 
-//include('../model/TaskRepository/TaskRepository.php');
-//include('../model/UserRepository/UserRepository.php');
-
 function __autoload($file)
 {
     if (file_exists('../controller/' . $file . '.php')) {
@@ -20,7 +17,11 @@ function __autoload($file)
 
 $init = new AdminEdit(new TaskRepository());
 
-$res = $init->execute($_POST['task']);
+if (isset($init))
+{
+    $res = $init->execute($_POST['task']);
+}
+
 ?>
 
 <a href="javascript:history .go(-1)">Task edited <br> go back to dashboard</a>

@@ -2,6 +2,11 @@
 
 interface UserRepo
 {
+    /**
+     * @param $task
+     * @param $user
+     * @return mixed
+     */
     public function save($task, $user);
 
     public function getAll();

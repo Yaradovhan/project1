@@ -2,9 +2,6 @@
 session_start();
 include '../config.php';
 
-//include('../model/TaskRepository/TaskRepository.php');
-//include('../model/UserRepository/UserRepository.php');
-
 function __autoload($file)
 {
     if (file_exists('../controller/' . $file . '.php')) {
