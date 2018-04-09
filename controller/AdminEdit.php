@@ -1,24 +1,25 @@
 <?php
-require_once "AdminAController.php";
 
+require_once "AdminAController.php";
+include "../API/TaskRepo.php";
+
+/**
+ * @property TaskRepository taskRepository
+ */
 class AdminEdit extends AdminAController
 {
     /**
      * AdminEdit constructor.
-     *
-     * @param TaskModel $taskRepository
+     * @param TaskRepository $taskRepository
      */
-    public function __construct(TaskModel $taskRepository)
+    public function __construct(TaskRepository $taskRepository)
     {
         $this->taskRepository = $taskRepository;
     }
 
     /**
-     * task[id]
-     * task[text]
-     *
      * @param null $params
-     * @return bool|mysqli_result
+     * @return bool|mixed|mysqli_result
      */
     public function execute($params = null)
     {

@@ -15,7 +15,8 @@ class ConnectionMySql
      */
     public function __construct()
     {
-        $this->connection = mysqli_connect(HOST, USER, PASS, DB);
+        $this->connection = mysqli_connect(ConfigApp::HOST, ConfigApp::USER,
+            ConfigApp::PASS, ConfigApp::DB);
         if (!$this->connection) {
             exec('No connection with DataBase');
         }

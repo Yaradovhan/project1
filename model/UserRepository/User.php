@@ -1,13 +1,9 @@
 <?php
-require_once 'Entity.php';
 
-class User extends Entity
+class User
 {
     private $name;
     private $email;
-    /**
-     * @var int
-     */
     private $id;
 
     public function __construct()
@@ -54,6 +50,6 @@ class User extends Entity
 
     public function getUser()
     {
-        return ['name' => $this->name,'email'=>$this->email];
+        return ['name' => $this->name, 'email' => $this->email];
     }
 }

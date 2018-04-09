@@ -1,6 +1,6 @@
 <?php
 
-class Task extends Entity
+class Task
 {
     private $id;
     private $text;
@@ -11,6 +11,7 @@ class Task extends Entity
 
     public function __construct()
     {
+
     }
 
     public function getId()

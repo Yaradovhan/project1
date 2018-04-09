@@ -1,12 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title><?= $title; ?></title>
 </head>
 <body>
 <h2>Header</h2>
-<a href="<?= HOME; ?>">Home page</a>
+<a href="../index.php">Home page</a>
 <hr>
 <style>
 
@@ -25,15 +24,14 @@
     }
 
 </style>
+
+<?php
+$host = $_SERVER['HTTP_HOST'];
+$request = $_SERVER['REQUEST_URI'];
+$actionEdit = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$host$request" . "edit.php";
+?>
+
 <div class="container">
-
-    <?php
-    $host = $_SERVER['HTTP_HOST'];
-    $request = $_SERVER['REQUEST_URI'];
-    $actionEdit = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$host$request" . "edit.php";
-
-    ?>
-<!--    <form action="" method="get">-->
     <?php foreach ($allData as $item) : ?>
         <form class="message" action="<?php echo $actionEdit; ?>" method="post">
             <input type="hidden" name="task[id]" value="<?php echo $item['task']['id'] ?>">
@@ -43,7 +41,6 @@
             <img src="<?php echo '/view/assets/img/' . $item['task']['img'] ?>"
                  alt="<?php echo $item['task']['img'] ?>"><br>
             <button>Edit Task</button>
-            <button>Check task</button>
         </form>
     <?php endforeach; ?>
     <?php

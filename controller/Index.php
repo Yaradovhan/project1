@@ -11,9 +11,13 @@ class Index extends AController
     {
 
         $sortMainTable = true;
-        $limit = 3;
-        if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };
-        $start = ($page-1) * $limit;
+        $limit = ConfigApp::MysqlLimit;
+        if (isset($_GET["page"])) {
+            $page = $_GET["page"];
+        } else {
+            $page = 1;
+        };
+        $start = ($page - 1) * $limit;
 
         $sort = null;
         if (isset($_GET['sort'])) {
@@ -29,7 +33,7 @@ class Index extends AController
         if ($sort) {
             $sortParam = '&sort=' . $sort;
         }
-        $taskRepository = new TaskModel();
+        $taskRepository = new TaskRepository();
         $allTasks = $taskRepository->getAll($start, $limit, $sort, $sortMainTable);
 
         return $this->render(

@@ -1,10 +1,7 @@
 <?php
 
+include 'Message.php';
 
-
-?>
-<?php
-//session_destroy();
 if (!isset($_SESSION['is_admin'])): ?>
     <form action="" method="post">
         <input type="text" name="name" placeholder="name">

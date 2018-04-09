@@ -1,7 +1,8 @@
 <?php
-//require_once ('../model/User.php');
-//require_once '../model/Task.php';
-class TaskRepository
+
+require_once('Task.php');
+
+class TaskRepository implements TaskRepo
 {
     /**
      * @var ConnectionMySql
@@ -24,7 +25,9 @@ class TaskRepository
      */
     public function save($task, $user = null)
     {
-        $resultSaveTask = mysqli_query($this->connection->getConnection(), "INSERT INTO `tasks`(`text`, `img`) VALUES ('" . $task->getText() . "','" . $task->getImg() . "')");
+        $resultSaveTask = mysqli_query($this->connection->getConnection(),
+            "INSERT INTO `tasks`(`text`, `img`) 
+                   VALUES ('" . $task->getText() . "','" . $task->getImg() . "')");
 
         return $resultSaveTask;
     }
@@ -34,7 +37,6 @@ class TaskRepository
      * @param int $limit
      * @param null $sort
      * @param bool $sortMainTable
-     *
      * @return array|bool
      */
     public function getAll($start = null, $limit = ConfigApp::MysqlLimit, $sort = null, $sortMainTable = true)
@@ -49,13 +51,10 @@ class TaskRepository
                                                ";
         if ($sort) {
             $sortTable = $sortMainTable ? 'main_table' : 'reference_table';
-            $query .= " ORDER BY $sortTable.$sort " . ConfigApp::MysqlDescSort;
+            $query .= " ORDER BY $sortTable.$sort " . ConfigApp::MysqlDefaultSort;
         }
 
         $query .= " LIMIT $start, $limit";
-
-        echo $query;
-        echo "<br>";
 
         $res = mysqli_query($this->connection->getConnection(), $query);
         if (!$res) {
@@ -83,10 +82,8 @@ class TaskRepository
         return $data;
     }
 
-
     /**
      * @param $id
-     *
      * @return bool|mysqli_result
      */
     public function deleteById($id)
@@ -101,7 +98,6 @@ class TaskRepository
 
     /**
      * @param $task
-     *
      * @return bool|mysqli_result
      */
     public function updateById($task)
@@ -113,5 +109,4 @@ class TaskRepository
 
         return $res;
     }
-
 }
