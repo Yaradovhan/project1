@@ -1,5 +1,6 @@
 <?php
 include 'User.php';
+
 class UserRepository implements UserRepo
 {
 
@@ -24,16 +25,26 @@ class UserRepository implements UserRepo
      */
     public function save($task, $user)
     {
-        $resultSaveUser = mysqli_query($this->connection->getConnection(), "INSERT INTO `users`(`name`, `email`) VALUES ('" . $user->getName() . "','" . $user->getEmail() . "')");
+        $resultSaveUser = mysqli_query($this->connection->getConnection(),
+            "INSERT INTO `users`(`name`, `email`) 
+                    VALUES ( mysql_real_escape_string('" . $user->getName() . "'), 
+                                mysql_real_escape_string('" . $user->getEmail() . "'))");
         if ($task) {
-            $resultBandleTaksToUser = mysqli_query($this->connection->getConnection(), "INSERT INTO `users_tasks` ( user_id, task_id ) VALUES ((SELECT max(id) FROM users),(SELECT max(id) FROM tasks))");
+            $resultBandleTaksToUser = mysqli_query($this->connection->getConnection(),
+                "INSERT INTO `users_tasks` ( user_id, task_id ) 
+                        VALUES ((SELECT max(id) FROM users),(SELECT max(id) FROM tasks))");
         }
+
         return $resultSaveUser;
     }
 
+    /**
+     * @return bool|mysqli_result
+     */
     public function getAll()
     {
-        $res = mysqli_query($this->connection->getConnection(),"SELECT id, name, email FROM `users`");
+        $res = mysqli_query($this->connection->getConnection(), "SELECT id, name, email FROM `users`");
+
         return $res;
     }
 
@@ -43,10 +54,11 @@ class UserRepository implements UserRepo
      */
     public function getById($id)
     {
-        $arrayUser = ['id' => $id, 'name' => 'admin', 'email' => 'email@list.ru'];
-        $user = new User();
-        $user->setUser($arrayUser);
-        return $user;
+        $res = mysqli_query($this->connection->getConnection(), "SELECT u.name, u.email
+                                        FROM users u                          
+                                        WHERE u.id =  mysql_real_escape_string('$id')");
+
+        return $res;
     }
 
     /**
@@ -55,7 +67,10 @@ class UserRepository implements UserRepo
      */
     public function deleteById($id)
     {
-        $res = mysqli_query($this->connection->getConnection(),"DELETE FROM `users` WHERE id = '$id'");
+        $res = mysqli_query($this->connection->getConnection(),
+            "DELETE FROM `users` 
+                   WHERE id =  mysql_real_escape_string('$id')");
+
         return $res;
     }
 
@@ -67,7 +82,9 @@ class UserRepository implements UserRepo
     {
         $res = mysqli_query(
             $this->connection->getConnection(),
-            "UPDATE tasks SET name='{$user->getName()}' WHERE id = '{$user->getId()}'"
+            "UPDATE tasks 
+                    SET name= mysql_real_escape_string('{$user->getName()}') 
+                    WHERE id =  mysql_real_escape_string('{$user->getId()}')"
         );
 
         return $res;

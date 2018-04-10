@@ -17,6 +17,7 @@ abstract class AdminAController
         extract($params);
         ob_start();
         include('../view/' . $file . '.php');
+
         return ob_get_clean();
     }
 }

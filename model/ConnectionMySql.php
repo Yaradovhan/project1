@@ -22,6 +22,9 @@ class ConnectionMySql
         }
     }
 
+    /**
+     * @return mysqli
+     */
     public function getConnection()
     {
         return $this->connection;

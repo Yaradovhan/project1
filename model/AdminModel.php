@@ -2,6 +2,10 @@
 
 class AdminModel
 {
+    /**
+     * @param $name
+     * @param $pass
+     */
     public function isAdmin($name, $pass)
     {
 

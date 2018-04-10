@@ -6,12 +6,10 @@ class Index extends AController
 {
     /**
      * @return string
-     * @throws Exception
      */
     public function execute()
     {
 
-        $sortMainTable = true;
         $limit = ConfigApp::MysqlLimit;
         if (isset($_GET["page"])) {
             $page = $_GET["page"];
@@ -26,8 +24,9 @@ class Index extends AController
                 $sort = "name";
             } elseif ($_GET['sort'] == 'email') {
                 $sort = "email";
+            } elseif ($_GET['sort'] == 'done') {
+                $sort = "done";
             }
-            $sortMainTable = false;
         }
 
         $sortParam = null;
@@ -35,7 +34,7 @@ class Index extends AController
             $sortParam = '&sort=' . $sort;
         }
         $taskRepository = new TaskRepository();
-        $allTasks = $taskRepository->getAll($start, $limit, $sort, $sortMainTable);
+        $allTasks = $taskRepository->getAll($start, $limit, $sort);
 
         return $this->render(
             'Index',

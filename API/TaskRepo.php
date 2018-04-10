@@ -9,10 +9,24 @@ interface TaskRepo
      */
     public function save($task, $user);
 
-    public function getAll($start, $limit, $sort, $sortMainTable);
+    /**
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @return mixed
+     */
+    public function getAll($start, $limit, $sort);
 
-    public function deleteById($task);
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function deleteById($id);
 
-    public function updateById($id);
+    /**
+     * @param $task
+     * @return mixed
+     */
+    public function updateById($task);
 
 }

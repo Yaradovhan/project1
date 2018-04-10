@@ -19,7 +19,6 @@ class AdminIndex extends AdminAController
         if($bool){
             $_SESSION['is_admin'] = 1;
         }
-
         if (!isset($_SESSION['is_admin'])) {
 
             return $this->render('LoginAdmin', [
@@ -29,6 +28,7 @@ class AdminIndex extends AdminAController
         } else {
             $repo = new TaskRepository();
             $allTasks = $repo->getAll($start, $limit);
+
             return $this->render('AdminIndex', [
                 'title' => 'Admin User',
                 'allData' => $allTasks

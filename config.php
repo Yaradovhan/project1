@@ -11,12 +11,10 @@ Class ConfigApp
     const MysqlDefaultSort = 'DESC';
     const MysqlLimit = 3;
     const Expansion = ["jpeg", "jpg", "png"];
-    const Path = '/view/assets/img/';
-    const MaxFileSize = 2097152;
 
     public static function imgPath()
     {
-        return $_SERVER['DOCUMENT_ROOT'].ConfigApp::Path;
+        return $_SERVER['DOCUMENT_ROOT']."/view/assets/img/";
     }
 
     public static function getFileName()
@@ -46,7 +44,7 @@ Class ConfigApp
 
     public static function getAdmin()
     {
-        return "/admin/index.php";
+        return "/admin/";
     }
 
     public static function addTask()

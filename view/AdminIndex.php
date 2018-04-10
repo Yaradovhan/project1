@@ -28,7 +28,7 @@
 <?php
 $host = $_SERVER['HTTP_HOST'];
 $request = $_SERVER['REQUEST_URI'];
-$actionEdit = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$host$request" . "edit.php";
+$actionEdit = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$host". ConfigApp::getAdmin() ."edit.php";
 ?>
 
 <div class="container">
@@ -40,6 +40,11 @@ $actionEdit = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$host$request"
             <textarea name="task[text]"><?php echo nl2br(htmlspecialchars($item['task']['text'])); ?></textarea><br>
             <img src="<?php echo '/view/assets/img/' . $item['task']['img'] ?>"
                  alt="<?php echo $item['task']['img'] ?>"><br>
+
+            <select name="task[done]">
+                <option value="1"<?php if($item['task']['done'] == '1'){ echo ' selected="selected"'; } ?>>done</option>
+                <option value="0"<?php if($item['task']['done'] == '0'){ echo ' selected="selected"'; } ?>>not done</option>
+            </select>
             <button>Edit Task</button>
         </form>
     <?php endforeach; ?>

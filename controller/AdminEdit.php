@@ -25,6 +25,7 @@ class AdminEdit extends AdminAController
     {
         $task = new Task();
         $task->setTask($params);
+
         return $this->taskRepository->updateById($task);
     }
 

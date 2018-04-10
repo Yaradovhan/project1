@@ -84,4 +84,3 @@
 <!--    })-->
 <!---->
 <!--</script>-->
-<a href="javascript:history .go(-1)">Task added <br> go back to dashboard</a>

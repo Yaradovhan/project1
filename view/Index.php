@@ -17,6 +17,8 @@
 |
 <th><a href="?sort=email">Sort by email:</a></th>
 |
+<th><a href="?sort=done">Sort by done:</a></th>
+|
 <th><a href="index.php">Default sort</a></th>
 <style>
 
@@ -43,6 +45,7 @@
             <div>Task: <?= nl2br(htmlspecialchars($item['task']['text'])) ?></div>
             <img src="<?php echo '/view/assets/img/' . $item['task']['img'] ?>"
                  alt="<?php echo $item['task']['img'] ?>">
+            <p>Done: <?= $item['task']['done'] ?></p>
         </div>
     <?php endforeach; ?>
 </form>

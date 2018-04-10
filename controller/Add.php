@@ -2,12 +2,11 @@
 
 class Add extends AController
 {
-
+    /**
+     * @return string
+     */
     public function execute()
     {
-        try {
-            return $this->render('Add', ['title' => 'Add task']);
-        } catch (Exception $e) {
-        }
+        return $this->render('Add', array('title' => 'Add task'));
     }
 }

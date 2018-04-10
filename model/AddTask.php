@@ -20,13 +20,13 @@ if (isset($_FILES['img'])) {
     if (in_array(ConfigApp::getFileExt(), ConfigApp::Expansion) === false) {
         $errors[] = "extension not allowed, please choose a JPEG or JPG or PNG file.";
     }
-    if (ConfigApp::getFileSize() > ConfigApp::MaxFileSize) {
+    if (ConfigApp::getFileSize() > 2097152) {
         $errors[] = 'File size must be excately 2 MB';
     }
     if (empty($errors) == true) {
         move_uploaded_file(ConfigApp::getFileTmp(), ConfigApp::imgPath().ConfigApp::getFileName());
     } else {
-        echo 'Error';
+        print_r($errors);
     }
 }
 
@@ -48,8 +48,10 @@ if (isset($_POST['user']) && isset($_POST['task'])) {
     $task->setTask($arrayTask);
     $taskRepo->save($task, $user);
     $userRepo->save($task, $user);
-} else {
-    echo "no data";
 }
+
+?>
+
+<a href="javascript:history .go(-1)">Task added <br> go back to dashboard</a>
 
 
