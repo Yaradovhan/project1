@@ -27,8 +27,8 @@ class TaskRepository implements TaskRepo
     {
         $resultSaveTask = mysqli_query($this->connection->getConnection(),
             "INSERT INTO `tasks`(`text`, `img`) 
-                   VALUES ( mysql_real_escape_string('" . $task->getText() . "'),
-                            mysql_real_escape_string('" . $task->getImg() . "'))");
+                   VALUES ( '" . $task->getText() . "',
+                            '" . $task->getImg() . "')");
         return $resultSaveTask;
     }
 
@@ -110,8 +110,8 @@ class TaskRepository implements TaskRepo
     {
         $res = mysqli_query(
             $this->connection->getConnection(),
-            "UPDATE tasks SET text=  mysql_real_escape_string('{$task->getText()}'), 
-                                    done= mysql_real_escape_string('{$task->getDone()}') 
+            "UPDATE tasks SET text=  '{$task->getText()}', 
+                                    done= '{$task->getDone()}'
                                     WHERE id = '{$task->getId()}'");
 
         return $res;

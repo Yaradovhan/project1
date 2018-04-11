@@ -27,8 +27,8 @@ class UserRepository implements UserRepo
     {
         $resultSaveUser = mysqli_query($this->connection->getConnection(),
             "INSERT INTO `users`(`name`, `email`) 
-                    VALUES ( mysql_real_escape_string('" . $user->getName() . "'), 
-                                mysql_real_escape_string('" . $user->getEmail() . "'))");
+                    VALUES ( '" . $user->getName() . "', 
+                                '" . $user->getEmail() . "')");
         if ($task) {
             $resultBandleTaksToUser = mysqli_query($this->connection->getConnection(),
                 "INSERT INTO `users_tasks` ( user_id, task_id ) 

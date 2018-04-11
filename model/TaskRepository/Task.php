@@ -1,6 +1,6 @@
 <?php
 
-class Task
+class Task extends ArrayObject
 {
     private $id;
     private $text;
@@ -14,6 +14,14 @@ class Task
     public function __construct()
     {
 
+    }
+
+    function offsetGet($key) {
+        $arr = [$this->id, $this->text];
+
+        if ( array_key_exists($key, $arr) ) {
+            return $arr[$key];
+        }
     }
 
     /**
@@ -93,10 +101,11 @@ class Task
     }
 
     /**
-     * @return array
+     * @return $this
      */
     public function getTask()
     {
+//        return $this;
         return ['id' => $this->id, 'text' => $this->text, 'img' => $this->img, 'date' => $this->date, 'done' => $this->done];
     }
 }
